@@ -19,6 +19,7 @@
     <RouterView />
     <footer>
       <p>Mentions Légales</p>
+      <p><RouterLink to="/drone">Drone</RouterLink></p>
     </footer>
   </div>
 </template>

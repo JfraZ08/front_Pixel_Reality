@@ -104,24 +104,27 @@ body {
   background-size: cover;
   display: flex;
   justify-content: flex-start;
+  z-index: -2;
 }
 
 .photo_sous {
   position: relative; 
-  width: 500px;
+  width: 400px;
   height: 600px;
   background-color: white;
+  z-index: 10;
 }
 
 .second_photo{
   position: absolute;
   top: 0;
-  right: -260px;
+  right: -220px;
   bottom: 0;
   width: 260px;
   background-color: white;
   transform: skewX(-20deg);
   transform-origin: top right;
+  z-index: -2;
 }
 
 
@@ -148,7 +151,7 @@ body {
   content: '';
   position: absolute;
   top: 0;
-  left: -180px;
+  left: -120px;
   bottom: 0;
   width: 290px;
   height: 600px;
@@ -163,25 +166,27 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start; /* alignement à gauche */
+  z-index: -2;
 }
 
 .logiciel_sous {
   position: relative;
-  width: 500px;
+  width: 400px;
   height: 600px;
   background-color: white;
+  z-index: 10;
 }
 
 .second_logiciel {
   position: absolute;
   top: 0;
-  left: 500px; /* dépassement vers la gauche */
+  left: 400px; /* dépassement vers la gauche */
   bottom: 0;
   width: 250px; /* largeur ajustée */
   background-color: white;
   transform: skewX(-20deg);
   transform-origin: top left;
-  z-index: 0;
+  z-index: -1;
 }
 
 
