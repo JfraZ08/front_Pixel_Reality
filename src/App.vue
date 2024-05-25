@@ -2,7 +2,10 @@
   <div id="app">
     <header>
       <nav>
-        <ul>
+        <div class="menu-toggle" @click="toggleMenu">
+          Menu
+        </div>
+        <ul :class="{'nav-links': true, 'open': isMenuOpen}">
           <!-- <li class="imgheader">
             <RouterLink to="/"><img src="../../public/images/Logo_PR.png" alt="Logo"></RouterLink>
           </li> -->
@@ -25,70 +28,105 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
 
 export default {
   components: {
     RouterLink,
     RouterView
+  },
+  setup() {
+    const isMenuOpen = ref(false);
+
+    const toggleMenu = () => {
+      isMenuOpen.value = !isMenuOpen.value;
+    };
+
+    return {
+      isMenuOpen,
+      toggleMenu
+    };
   }
 };
 </script>
 
 <style>
 header {
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  width: 100%;
-  height: auto;
-} 
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+    height: auto;
+}
+
 nav {
-  width: 1000px;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
-nav ul {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  margin: 0;
-  padding: 0;
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
 }
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 li {
-  list-style-type: none;
-  width: 145px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  font-weight: bold;
+    list-style-type: none;
+    width: 145px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-weight: bold;
 }
+
 header a {
-  text-decoration: none;
-  color: black;
+    text-decoration: none;
+    color: black;
 }
+
 .imgheader img {
-  width: 80px;
-  height: 100px;
+    width: 80px;
+    height: 100px;
 }
+
 .enterpriseheader a {
-  color: white;
+    color: white;
 }
 
 .enterpriseheader {
-  background-color: black;
+    background-color: black;
 }
+
 .photographieheader {
-  background-color: #FFD400;
+    background-color: #FFD400;
 }
+
 .imagerieiaheader {
-  background-color: #00CC00;
+    background-color: #00CC00;
 }
+
 .photogrammetrieheader {
-  background-color: #0099FF;
+    background-color: #0099FF;
 }
+
 .qrcodeheader {
-  background-color: #CC0000;
+    background-color: #CC0000;
 }
 
 footer {
@@ -101,5 +139,31 @@ footer {
 
 footer p {
   color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: white;
+        display: none;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    li {
+        width: 100%;
+        height: auto;
+    }
 }
 </style>
