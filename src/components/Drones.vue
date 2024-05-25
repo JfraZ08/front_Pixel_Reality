@@ -9,7 +9,7 @@
       </ul>
     </div>
   </template>
-  
+ 
   <script>
   import DronesService from '@/services/DronesService';
   

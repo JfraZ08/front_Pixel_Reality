@@ -3,9 +3,9 @@
     <header>
       <nav>
         <ul>
-          <li class="imgheader">
+          <!-- <li class="imgheader">
             <RouterLink to="/"><img src="../../public/images/Logo_PR.png" alt="Logo"></RouterLink>
-          </li>
+          </li> -->
           <li class="homeheader"><RouterLink to="/">Accueil</RouterLink></li>
           <li class="enterpriseheader"><RouterLink to="/entreprise">L'entreprise</RouterLink></li>
           <li class="photographieheader"><RouterLink to="/photographie">Photographie</RouterLink></li>
@@ -55,7 +55,7 @@ nav ul {
 }
 li {
   list-style-type: none;
-  width: 140px;
+  width: 145px;
   height: 100px;
   display: flex;
   justify-content: center;
