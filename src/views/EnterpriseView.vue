@@ -7,46 +7,66 @@
             </div>
         </div>
         <div class="description_entreprise">
-            <div class="particuliers">
-                <div class="carre"></div>
-                <h2><span>P</span>articuliers</h2>
+            <div class="description-texte">
+                <h2>Qui suis-je ?</h2>
+                <p>Je suis Maxime Bally, un touche-à-tout passionné par l’image et les nouvelles technologies.
+ Après une première période de ma vie partagée entre une aventure individuelle en agriculture et une carrière dans le commerce des produits de terroir, j’ai eu l’envie de faire bénéficier à d’autres de mon expérience et de mon approche esthétique.</p>
+ 
+ <p>Ma plus grande force est ma curiosité et l’envie permanente d’avancer et de ne pas laisser la course du temps me laisser à la traîne.</p>
+ 
+ <p>La technologie évolue, notre rapport à l’image aussi, et surtout ses usages.
+ Que ce soit pour marquer un moment fort de votre vie,</p>
             </div>
-            <div class="professionnels">
-                <div class="carre"></div>
-                <h2><span>P</span>rofessionnels</h2>
+            <div class="description-image">
+                <img src="../../public/images/Max.jpg" alt="">
             </div>
+
         </div>
     </section>
 </template>
 <style>
 .description_entreprise {
     width: 100%;
-    height: 800px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: end;
-}
-
-.description_entreprise .particuliers {
-    width: 530px;
-    height: 600px;
-    margin-right: 10px;
-}
-
-.description_entreprise .professionnels {
-    width: 530px;
-    height: 600px;
-    margin-left: 10px;
+    margin-bottom: 20px;
 }
 
 .carre {
-    background-color: blue;
     widows: 100%;
     max-width: 530px;
-    height: 530px;
+    height: 360px;
+}
+
+.carre img{
+    widows: 100%;
+    max-width: 530px;
+    height: auto;
+}
+
+.professionnels .carre img{
+    widows: 100%;
+    max-width: 500px;
+    height: auto;
 }
 
 .professionnels h2, .particuliers h2 {
     text-align: center;
+}
+
+.description-image img{
+    width: 300px;
+    height: auto;
+}
+
+.description-texte {
+    width: 400px;
+}
+
+.description-texte p {
+    line-height: 20px;
+    margin-top: 20px;
 }
 </style>

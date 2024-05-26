@@ -11,7 +11,7 @@
                 <p></p>
                 <div class="particuliers_photo">
                     <div class="picture_nopro">
-                        <img src="" alt="">
+                        <img src="../../public/images/605.jpg" alt="particuliers">
                     </div>
                     <div class="contexte">
                         <h3><span>P</span>articuliers</h3>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="pro_photographie">
                     <div class="picture_pro">
-                        <img src="" alt="">
+                        <img src="../../public/images/2148813340.jpg" alt="professionnels">
                     </div>
                     <div class="contexte">
                         <h3><span>P</span>rofessionnels</h3>
@@ -99,9 +99,13 @@
 
 .picture_nopro, .picture_pro {
     width: 300px;
-    height: 300px;
-    background: blue;
+    height: auto;
     margin-right: 20px;
+}
+
+.picture_nopro img, .picture_pro img {
+    width: 300px;
+    height: auto;
 }
 
 .contexte {

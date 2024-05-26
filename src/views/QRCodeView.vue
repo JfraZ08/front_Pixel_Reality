@@ -7,11 +7,15 @@
         </div>
         <div class="description_qrcode">
             <div class="particuliers">
-                <div class="carre"></div>
+                <div class="carre">
+                    <img src="../../public/images/605.jpg" alt="">
+                </div>
                 <h2><span>P</span>articuliers</h2>
             </div>
             <div class="professionnels">
-                <div class="carre"></div>
+                <div class="carre">
+                    <img src="../../public/images/2148813340.jpg" alt="">
+                </div>
                 <h2><span>P</span>rofessionnels</h2>
             </div>
         </div>
@@ -60,7 +64,6 @@
 }
 
 .carre {
-    background-color: blue;
     widows: 100%;
     max-width: 530px;
     height: 530px;
