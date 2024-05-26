@@ -7,7 +7,8 @@
             </div>
         </div>
         <section class="service_sous">
-            <div>
+            <div class="description_photographie">
+                <p></p>
                 <div class="particuliers_photo">
                     <div class="picture_nopro">
                         <img src="" alt="">
