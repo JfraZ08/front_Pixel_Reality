@@ -15,57 +15,6 @@
   </div>
 </template>
 
-<style>
-.component-drone {
-  width: 100%;
-  height: 1000px;
-  margin-top: 20px;
-}
-
-.componant-drone ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.drone-item {
-  position: relative;
-  width: 600px;
-  height: 800px;
-  margin-bottom: 20px;
-}
-
-.first, .second {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.first h2 {
-  z-index: 1;
-}
-
-.second {
-  z-index: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: justify;
-}
-
-.componant-drone img {
-  width: 300px;
-  height: auto;
-}
-</style>
 
 <script>
 import DronesService from '@/services/DronesService';
@@ -94,3 +43,54 @@ export default {
   }
 };
 </script>
+  <style>
+  .component-drone {
+    width: 100%;
+    height: 1000px;
+    margin-top: 20px;
+  }
+  
+  .componant-drone ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .drone-item {
+    position: relative;
+    width: 600px;
+    height: 800px;
+    margin-bottom: 20px;
+  }
+  
+  .first, .second {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .first h2 {
+    z-index: 1;
+  }
+  
+  .second {
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+  }
+  
+  .componant-drone img {
+    width: 300px;
+    height: auto;
+  }
+  </style>

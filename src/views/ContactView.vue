@@ -1,48 +1,51 @@
-<!-- <script>
-const contactform = document.querySelector('.contact-form');
-let firstname = document.getElementById('firstname');
-let email = document.getElementById('email');
-let subject = document.getElementById('subject');
-let message = document.getElementById('message');
-
-contactform.addEventListener('submit', (e)=>{
-    e.preventDefault();
-
-    let formData = {
-        firstname: firstname.value,
-        email: email.value,
-        subject: subject.value,
-        message: message.value
-    }
-    
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', '/');
-    xhr.setRequestHeader('content-type', 'application/json')
-    xhr.onload = function(){
-        console.log(xhr.responseText)
-        if (xhr.responseText == 'success') {
-            alert('Email sent');
-            firstname.value = '';
-            email.value = '';
-            subject.value = '';
-            message.value = '';
-        } else {
-            console.log('Something went wrong')
+<script>
+export default {
+    data() {
+        return {
+            formData: {
+                firstname: '',
+                email: '',
+                subject: '',
+                message: ''
+            }
+        };
+    },
+    methods: {
+        async submitForm() {
+            try {
+                const response = await fetch('/api/mail', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    },
+                    body : JSON.stringify(this.formData)
+                });
+                const result = await response.text();
+                if (result === 'success') {
+                    console.log('Email sent : ', response.data)
+                    this.formData.firstname = '';
+                    this.formData.email = '';
+                    this.formData.subject = '';
+                    this.formData.message = '';
+                } else {
+                    console.log('Something went wrong')
+                } 
+            } catch (error) {
+                console.error('Error:', error);
+            }
         }
     }
-
-    xhr.send(JSON.stringify(formData))
-})
-</script> -->
+}
+</script>
 
 <template>
     <div class="form-container">
-        <form class="contact-form">
+        <form class="contact-form" @submit.prevent="submitForm">
             <h2>CONTACT</h2>
-            <input type="text" id="firstname" placeholder="Votre nom"><br>
-            <input type="email" id="email" placeholder="Votre adresse mail"><br>
-            <input type="test" id="subject" placeholder="Sujet"><br>
-            <textarea id="message" placeholder="Message" cols="30" rows="10"></textarea><br>
+            <input type="text" id="firstname" v-model="formData.firstname" placeholder="Votre nom"><br>
+            <input type="email" id="email" v-model="formData.email" placeholder="Votre adresse mail"><br>
+            <input type="test" id="subject" v-model="formData.subject" placeholder="Sujet"><br>
+            <textarea id="message" v-model="formData.message" placeholder="Message" cols="30" rows="10"></textarea><br>
             <input type="submit" class="submit" value="Envoyer">
         </form>
     </div>
