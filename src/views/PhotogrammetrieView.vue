@@ -1,3 +1,13 @@
+
+<script>
+import Drones from "@/components/Drones.vue";
+
+export default {
+  components: {
+    Drones
+  }
+};
+</script>
 <template>
     <section id="photogrammetrie">
         <div class="fond_photogrammetrie">
@@ -25,6 +35,11 @@
             </div>
            </div>
         </div>
+        <div class="drone">
+            <p>Nos réalisations sont faites à partir de ce drone :</p>
+            
+        </div>
+        <Drones />
         <div id="realisations">
             <h2><span>N</span>os réalisations</h2>
         </div>
@@ -127,7 +142,15 @@
 }
 
 #realisations {
-    height: 400px;
+    height: 800px;
+}
+
+
+.drone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
 }
 
 
