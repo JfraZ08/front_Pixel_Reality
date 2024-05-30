@@ -37,7 +37,7 @@
     width: 100%;
     height: 500px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: end;
     margin-bottom: 20px;
 }
@@ -70,7 +70,8 @@
 }
 
 .description-texte {
-    width: 400px;
+    width: 100%;
+    max-width: 700px;
 }
 
 .description-texte p {
@@ -93,5 +94,11 @@
 
 .description_second_text h2, .description_second_text p {
     margin-bottom: 20px;
+}
+
+.description_second_text span, .description-texte span {
+    background-color: black;
+    color: white;
+    padding-left: 20px;
 }
 </style>

@@ -6,17 +6,16 @@
             </div>
         </div>
         <div class="description_qrcode">
-            <div class="particuliers">
-                <div class="carre">
-                    <img src="../../public/images/605.jpg" alt="">
+            <div class="sous_qrcode">
+                <h2>A quoi sert un QR Code en réalité augmentée ?</h2>
+                <p>Avec la technologie des QR Codes, il est possible d'interagir avec vos prospects et clients pour les rediriger sur votre contenu. Mais saviez-vous qu'il est possible d'utiliserun QR Code pour afficher un objet,sur l'écran du téléphone qui le scanne ?</p>
+                <p>Grâce à cete innovation, vous pouvez augmenter drastiquement l'interactivité de vos suports web et print sans difficulté.</p>
+                <p>Par exemple, vous pouvez ajouter à votre carte de visite un QR Code qui affichera un modèle 3D de votre produit phare, ou encore faire appara^tre le conenu d'un carton sans qu'il soit nécessaire l'ouvrir</p>
+                <p>Les possibilités n'ont de limite que veille de votre imagination </p>
+                <p>N'attendez-plus et contactez-moi pour une démonstration </p>
+                <div class="button">
+                    <button><RouterLink to="/contact">contactez moi</RouterLink></button>
                 </div>
-                <h2><span>P</span>articuliers</h2>
-            </div>
-            <div class="professionnels">
-                <div class="carre">
-                    <img src="../../public/images/2148813340.jpg" alt="">
-                </div>
-                <h2><span>P</span>rofessionnels</h2>
             </div>
         </div>
     </section>
@@ -45,36 +44,39 @@
 
 .description_qrcode {
     width: 100%;
-    height: 800px;
+    height: 600px;
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: center;
 }
 
-.description_qrcode .particuliers {
-    width: 530px;
-    height: 600px;
-    margin-right: 10px;
+.description_qrcode .sous_qrcode {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    text-align: justify;
 }
 
-.description_qrcode .professionnels {
-    width: 530px;
-    height: 600px;
-    margin-left: 10px;
+.description_qrcode .sous_qrcode h2 {
+    margin-bottom: 20px;
 }
 
-.carre {
-    widows: 100%;
-    max-width: 530px;
-    height: 530px;
+.description_qrcode .sous_qrcode p {
+    margin-top: 20px;
 }
 
-.professionnels h2, .particuliers h2 {
-    text-align: center;
-    margin-top: 10px;
+.description_qrcode .sous_qrcode .button {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.professionnels span, .particuliers span {
-    background-color: #FFD400;
-    padding-left: 10px;
+
+.sous_qrcode .button button {
+    background-color: #CC0000;
+    border: none;
+    text-transform: uppercase;
+    font-size: 20px;
 }
 </style>

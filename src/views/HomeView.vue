@@ -238,7 +238,7 @@ body {
   margin-right: 30px;
   margin-top: 20px;
   line-height: 20px;
-  font-size: 12px;  
+  font-size: 15spx;  
 }
 
 .ia {
@@ -256,7 +256,7 @@ body {
   margin-right: 40px;
   margin-top: 20px;
   line-height: 20px;
-  font-size: 12px; 
+  font-size: 15px; 
 }
 
 .text_paysage {
@@ -279,7 +279,7 @@ body {
   margin-right: 40px;
   margin-top: 20px;
   line-height: 20px;
-  font-size: 12px; 
+  font-size: 15px; 
 }
 
 .p_gramme {
@@ -297,7 +297,7 @@ body {
   margin-right: 40px;
   margin-top: 20px;
   line-height: 20px;
-  font-size: 12px;
+  font-size: 15px;
   z-index: 10;  
 }
 
