@@ -64,7 +64,9 @@
 }
 
 .sous_photographie {
-    width: 570px;
+    width: 100%;
+    max-width: 570px;
+
     height: 100px;
     text-align: center;
 }

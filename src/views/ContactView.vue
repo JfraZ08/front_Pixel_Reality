@@ -13,7 +13,7 @@ export default {
     methods: {
         async submitForm() {
             try {
-                const response = await fetch('/api/mail', {
+                const response = await fetch('http://localhost:3000/api/mail', {
                     method: 'POST',
                     headers: {
                         'Content-Type' : 'application/json'

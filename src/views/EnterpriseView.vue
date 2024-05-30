@@ -8,7 +8,7 @@
         </div>
         <div class="description_entreprise">
             <div class="description-texte">
-                <h2>Qui suis-je ?</h2>
+                <h2><span>Q</span>ui suis-je ?</h2>
                 <p>Je suis Maxime Bally, un touche-à-tout passionné par l’image et les nouvelles technologies.
  Après une première période de ma vie partagée entre une aventure individuelle en agriculture et une carrière dans le commerce des produits de terroir, j’ai eu l’envie de faire bénéficier à d’autres de mon expérience et de mon approche esthétique.</p>
  
@@ -21,6 +21,14 @@
                 <img src="../../public/images/Max.jpg" alt="">
             </div>
 
+        </div>
+        <div class="second_description_enterprise">
+            <div class="description_second_text">
+                <h2><span>M</span>a méthode et mon matériel</h2>
+                <p>Ma méthode de travail est centrée sur vous et vos besoins. Après un premier contact par mail pour me détailler vos besoins et vos attentes, je ovus propose une fourchette de prix. Nous l'adopterons au cours d'un entretien en face à face qui permettra d'affiner, d'envisager ce qui a pu être oublié, et d'optimiser la prestation pour m'adapter à vos contraintes et vous proposer le tarif le plus concurrentiel possible.</p>
+                <p>Pour m'accompagner dans la création de votre univers visuel, je me suis doté du matéirle suivant :</p>
+                Nikon D31000 + divers objectifs spécialisés dans le portrait, le paysage et la photo de rue. Un ordinateur haut de gamme pour le traitement des images et la génération par intelligence artificielle et un drone DJU Mavic 3
+            </div>
         </div>
     </section>
 </template>
@@ -68,5 +76,22 @@
 .description-texte p {
     line-height: 20px;
     margin-top: 20px;
+}
+.second_description_enterprise {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+}
+
+.description_second_text {
+    width: 100%;
+    max-width: 1150px;
+    margin-bottom: 20px;
+
+}
+
+.description_second_text h2, .description_second_text p {
+    margin-bottom: 20px;
 }
 </style>
