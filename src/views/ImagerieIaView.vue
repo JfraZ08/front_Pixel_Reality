@@ -9,10 +9,10 @@
         <div class="description_imagerieia">
             <div class="illustration_example">
                 <div class="pictures">
-                    <img src="../../public/images/paysage.jpeg" alt="">
+                    <img src="../../public/images/illustration_graphique.png" alt="">
                 </div>
                 <div class="description_sous">
-                    <p>Vous avez besoin d'illustration pour un roman graaphique ?</p>
+                    <p>Vous avez besoin d'illustration pour un roman graphique ?</p>
                     <p>Vous souhaitez donner corps aux personnages de votre campagne de jeu de rôle ?</p>
                     <p>Votre catalogue nécessite des mises en scènes et vousn ne trouvez par satisfactions dans les banques d'images ?</p>
                     <p class="saut">L'intelligence artificielle permet désormais de contourner les limites de la création avec une vitesse inégalée et un coût économique</p>
