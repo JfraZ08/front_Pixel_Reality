@@ -7,6 +7,7 @@ import PhorogrammetrieView from '../views/PhotogrammetrieView.vue'
 import QRCodeView from '../views/QRCodeView.vue'
 import ContactView from '../views/ContactView.vue'
 import Drones from '@/components/Drones.vue'
+import AdminDrone from '@/admin/views/AdminDrone.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,11 @@ const router = createRouter({
       path: '/drone',
       name: 'drone',
       component: Drones
+    },
+    {
+      path: '/admin/drone',
+      name: 'admin_drone',
+      component: AdminDrone
     }
   ]
 })
