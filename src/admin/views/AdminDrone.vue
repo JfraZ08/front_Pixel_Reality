@@ -1,3 +1,72 @@
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.maj {
+    background-color: #4CAF50;
+    color: white;
+    width: 80px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.maj:hover {
+    background-color: #45a049;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.delete {
+    background-color: #f44336;
+    color: white;
+    width: 80px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.delete:hover {
+    background-color: #e31b0c;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.table_edit, .table_delete, .table_name, .table_name_sous, .table_description, .table_description_sous {
+    width: 150px;
+    max-width: 150px;
+    word-wrap: break-word;
+}
+</style>
+
+
 <template>
     <div>
         <h2>Ajout d'un nouveau drone</h2>
@@ -18,18 +87,21 @@
         <table>
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>Actions</th>
+                    <th class="table_name">Nom</th>
+                    <th class="table_description">Description</th>
+                    <th class="table_edit">Modifier</th>
+                    <th class="table_delete">Supprimer</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="drone in drones" :key="drone.id_drone">
-                    <td>{{ drone.nom }}</td>
-                    <td>{{ drone.description }}</td>
-                    <td>
-                        <button @click="editDrone(drone)">Modifier</button>
-                        <button @click="deleteDrone(drone.id_drone)">Supprimer</button>
+                    <td class="table_name_sous">{{ drone.nom }}</td>
+                    <td class="table_description_sous">{{ drone.description }}</td>
+                    <td class="table_edit_sous">
+                        <button class="maj" @click="editDrone(drone)">Modifier</button>
+                    </td>
+                    <td class="table_delete_sous">    
+                        <button class="delete" @click="deleteDrone(drone.id_drone)">Supprimer</button>
                     </td>
                 </tr>
             </tbody>

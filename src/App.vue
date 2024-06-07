@@ -52,6 +52,20 @@ export default {
 </script>
 
 <style>
+
+@font-face {
+  font-family: 'Century Gothic';
+  src: url('../src/assets/fonts/centurygothic.ttf'),
+       url('../src/assets/fonts/centurygothic_bold.ttf');
+}
+body {
+  font-family: 'Century Gothic', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Century Gothic', sans-serif;
+  font-weight: bold;
+}
 header {
     display: flex;
     justify-content: center;

@@ -383,4 +383,43 @@ button a{
   color: black;
 }
 
+/* Responsive styling */
+@media (max-width: 768px) {
+  .photo, .paysage, .logiciel, .qrcode {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .photo_sous, .paysage_sous, .logiciel_sous, .qrcode_sous {
+    width: 90%;
+    max-width: 90%;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .second_photo, .second_form, .second_logiciel, .second_qrcode {
+    display: none;
+  }
+
+  .manuel h1 {
+    font-size: 30px;
+    padding: 10px;
+  }
+
+  .text_photo, .text_paysage, .text_logiciel, .text_qrcode {
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+}
+
+
 </style>
