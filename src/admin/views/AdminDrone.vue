@@ -59,31 +59,41 @@ tbody tr:hover {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
+.ajout_title, .list_title {
+    text-align: center;
+}
 .table_edit, .table_delete, .table_name, .table_name_sous, .table_description, .table_description_sous {
     width: 150px;
     max-width: 150px;
     word-wrap: break-word;
+}
+
+.form {
+    width: 60px;
+    height: 30px;
+    background-color: #4CAF50;
+    border: none;
 }
 </style>
 
 
 <template>
     <div>
-        <h2>Ajout d'un nouveau drone</h2>
+        <h2 class="ajout_title">Ajout d'un nouveau drone</h2>
         <form @submit.prevent="addOrUpdateDrone">
             <div>
                 <label for="nom">Nom:</label>
-                <input type="text" id="nom" v-model="nom" required /> 
+                <input class="input-nom" type="text" id="nom" v-model="nom" required /> 
             </div>
             <div>
                 <label for="description">Description:</label>
                 <textarea id="description" v-model="description" required></textarea>
             </div>
-            <button type="submit">{{ isEdit ? 'Mettre à jour' : 'Ajouter' }}</button>
+            <button class="form" type="submit">{{ isEdit ? 'Mettre à jour' : 'Ajouter' }}</button>
         </form>
         <p v-if="message">{{ message }}</p>
 
-        <h2>Listes des drones</h2>
+        <h2 class="list_title">Listes des drones</h2>
         <table>
             <thead>
                 <tr>
