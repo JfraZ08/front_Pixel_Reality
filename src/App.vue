@@ -6,9 +6,9 @@
           Menu
         </div>
         <ul :class="{'nav-links': true, 'open': isMenuOpen}">
-          <!-- <li class="imgheader">
+          <li class="imgheader">
             <RouterLink to="/"><img src="../../public/images/Logo_PR.png" alt="Logo"></RouterLink>
-          </li> -->
+          </li>
           <li class="homeheader"><RouterLink to="/">Accueil</RouterLink></li>
           <li class="enterpriseheader"><RouterLink to="/entreprise">L'entreprise</RouterLink></li>
           <li class="photographieheader"><RouterLink to="/photographie">Photographie</RouterLink></li>
