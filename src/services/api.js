@@ -1,5 +1,7 @@
 // src/services/api.js
 import axios from 'axios';
+import { error } from 'console';
+import { config } from 'process';
 
 const apiClient = axios.create({
   baseURL: 'http://localhost:3000/api', 
@@ -12,8 +14,6 @@ const apiClient = axios.create({
 export default {
   getDrones() {
     return apiClient.get('/drones');
-  },
-    sendMail(mailData) {
-    return apiClient.post('/mail', mailData);
-  },
-};
+    }
+    };
+    
