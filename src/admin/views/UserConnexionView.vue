@@ -18,8 +18,6 @@
     },
     methods: {
       async login() {
-      console.log(this.username);
-      console.log(this.password)
           try {
     const response = await fetch('http://localhost:5000/api/auth/login', {
       method: "POST",
@@ -34,9 +32,7 @@
     if (!response.ok) {
       throw new Error("Failed to log user");
     }
-  console.log(response)
   const API_RESPONSE = await response.json()
-  console.log(API_RESPONSE)
           // Stocker le token dans localStorage
           localStorage.setItem('token', API_RESPONSE.token);
   
