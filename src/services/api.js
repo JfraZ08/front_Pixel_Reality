@@ -1,10 +1,11 @@
 // src/services/api.js
 import axios from 'axios';
-import { error } from 'console';
-import { config } from 'process';
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
+
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3000/api', 
+  baseURL: BACKEND_URL, 
   mode: 'no-cors',
   headers: {
     'Content-Type': 'application/json',

@@ -1,7 +1,9 @@
 // src/services/droneService.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/drones';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const API_URL = `${BACKEND_URL}+/drones`;
+
 
 class DroneService {
   getAllDrones() {

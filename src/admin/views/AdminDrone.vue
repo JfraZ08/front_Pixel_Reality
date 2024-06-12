@@ -78,6 +78,7 @@ tbody tr:hover {
 
 
 <template>
+<!-- <deconnexion-view/> -->
     <div>
         <h2 class="ajout_title">Ajout d'un nouveau drone</h2>
         <form @submit.prevent="addOrUpdateDrone">
@@ -122,8 +123,10 @@ tbody tr:hover {
 
 <script>
 import axios from "axios";
+import deconnexionView from '@/components/deconnexion/deconnexionView.vue';
 
 export default {
+  components: { deconnexionView },
     data(){
         return {
             drones: [],
@@ -158,6 +161,7 @@ export default {
                         this.isEdit = false;
                         this.editId = null;
                         this.fetchDrones();
+                        console.log(response)
                     } else {
                         this.message = 'Erreur lors de la mise à jour du drone';
                     }
