@@ -1,6 +1,6 @@
 <template>
     <div class="form-container">
-       <p>Si vous souhaitez me contacter </p>
+       <p>Une nouvelle page de contact arriveras très prochainement</p>
     </div>
 </template>
 <style>

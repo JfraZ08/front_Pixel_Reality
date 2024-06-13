@@ -15,7 +15,7 @@
   .manuel {
     width: 100%;
     height: 600px;
-    background-image: url('../../public/images/manuel.jpeg');
+    background-image: url('../../../public/images/manuel.jpeg');
     background-size: cover;
     z-index: -10;
     display: flex;
@@ -37,7 +37,7 @@
   .photo {
     width: 100%;
     height: 600px;
-    background-image: url('../../public/images/photo.jpeg');
+    background-image: url('../../../public/images/photo.jpeg');
     background-size: cover;
     display: flex;
     justify-content: flex-start;
@@ -68,7 +68,7 @@
   .paysage {
     width: 100%;
     height: 600px;
-    background-image: url('../../public/images/paysage.jpeg');
+    background-image: url('../../../public/images/paysage.jpeg');
     background-size: cover;
     display: flex;
     justify-content: flex-end;
@@ -98,7 +98,7 @@
   }
   
   .logiciel {
-    background-image: url('../../public/images/3D.jpeg');
+    background-image: url('../../../public/images/3D.jpeg');
     background-size: cover;
     display: flex;
     align-items: center;
@@ -130,7 +130,7 @@
   .qrcode {
     width: 100%;
     height: 600px;
-    background-image: url('../../public/images/qrcode.jpeg');
+    background-image: url('../../../public/images/qrcode.jpeg');
     background-size: cover;
     display: flex;
     justify-content: flex-end;
