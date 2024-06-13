@@ -78,7 +78,7 @@ tbody tr:hover {
 
 
 <template>
-<!-- <deconnexion-view/> -->
+<deconnexion-view/>
     <div>
         <h2 class="ajout_title">Ajout d'un nouveau drone</h2>
         <form @submit.prevent="addOrUpdateDrone">
@@ -125,6 +125,8 @@ tbody tr:hover {
 import axios from "axios";
 import deconnexionView from '@/components/deconnexion/deconnexionView.vue';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEV; 
+
 export default {
   components: { deconnexionView },
     data(){
@@ -140,7 +142,7 @@ export default {
     methods: {
         async fetchDrones() {
             try {
-                const response = await axios.get('http://localhost:3000/api/drones');
+                const response = await axios.get(`${BACKEND_URL}/api/drones`);
                 this.drones = response.data;
             } catch (error) {
                 console.log('Error lors de la récupération des drones:', error);
@@ -148,9 +150,9 @@ export default {
         },
         async addOrUpdateDrone() {
             if (this.isEdit) {
-                // Mise à jour du drone
+                // Mise à jour du drone        }
                 try {
-                    const response = await axios.put(`http://localhost:3000/api/drones/${this.editId}`, {
+                    const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL_DEV}/api/drones/${this.editId}`, {
                         nom: this.nom,
                         description: this.description
                     });
@@ -161,10 +163,10 @@ export default {
                         this.isEdit = false;
                         this.editId = null;
                         this.fetchDrones();
-                        console.log(response)
                     } else {
                         this.message = 'Erreur lors de la mise à jour du drone';
                     }
+                    console.log(response)
                 } catch (error) {
                     console.log('Erreur : ', error);
                     this.message = 'Erreur lors de la mise à jour du drone';
@@ -172,7 +174,7 @@ export default {
             } else {
                 // Ajout d'un nouveau drone
                 try {
-                    const response = await axios.post('http://localhost:3000/api/drones', {
+                    const response = await axios.post(`${BACKEND_URL}/api/drones`, {
                         nom: this.nom,
                         description: this.description
                     });
@@ -192,7 +194,7 @@ export default {
         },
         async deleteDrone(id_drone){
             try {
-                const response = await axios.delete(`http://localhost:3000/api/drones/${id_drone}`);
+                const response = await axios.delete(`${BACKEND_URL}/api/drones/${id_drone}`);
                 if(response.status === 200) {
                     this.message = 'Drone supprimé avec succès';
                     this.fetchDrones(); // Mettre à jour la liste des drones après suppression;

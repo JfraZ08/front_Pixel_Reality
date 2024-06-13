@@ -9,6 +9,8 @@
   <script>
   import axios from 'axios';
   
+
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEV
   export default {
     data() {
       return {
