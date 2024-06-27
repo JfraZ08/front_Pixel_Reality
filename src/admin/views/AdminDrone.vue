@@ -119,16 +119,20 @@ tbody tr:hover {
         </table>
         <p v-if="message">{{ message }}</p>
     </div>
+    <div>
+        <Articleform/>
+    </div>
 </template>
 
 <script>
 import axios from "axios";
 import deconnexionView from '@/components/deconnexion/deconnexionView.vue';
+import Articleform from "@/components/articles/Articleform.vue";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEV; 
 
 export default {
-  components: { deconnexionView },
+  components: { deconnexionView, Articleform },
     data(){
         return {
             drones: [],
@@ -142,7 +146,7 @@ export default {
     methods: {
         async fetchDrones() {
             try {
-                const response = await axios.get(`${BACKEND_URL}/api/drones`);
+                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL_DEV}/api/drones`);
                 this.drones = response.data;
             } catch (error) {
                 console.log('Error lors de la récupération des drones:', error);

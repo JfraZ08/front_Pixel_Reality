@@ -42,10 +42,19 @@
         </section>
         <section id="portfolio">
             <h2><span>P</span>ortfolio</h2>
+            <ArticleList/>
         </section>
     </section>
 </template>
+<script>
+import ArticleList from './ArticlesList.vue';  // Ensure the path is correct
 
+export default {
+  components: {
+    ArticleList
+  }
+}
+</script>
 
 <style>
 #photographie_page {
