@@ -5,7 +5,7 @@
       <div v-for="article in articles" :key="article.article_id" class="article">
         <h2>{{ article.title }}</h2>
         <p>{{ article.content }}</p>
-        <img v-if="article.image_url" :src="article.image_url" alt="Image de l'article">
+        <p>Tags: {{ article.tags.join(', ') }}</p>
         <p>Créé le: {{ new Date(article.created_at).toLocaleString() }}</p>
         <button @click="showEditModal(article)">Modifier</button>
         <button @click="deleteArticle(article.article_id)">Supprimer</button>
@@ -17,7 +17,6 @@
     <EditArticleModal v-if="showModal" :show="showModal" :article="selectedArticle" @close="showModal = false" @update="updateArticle"/>
   </div>
 </template>
-
 
 <script>
 import axios from 'axios';
@@ -41,11 +40,7 @@ export default {
     async fetchArticles() {
       try {
         const response = await axios.get('http://localhost:4000/api/articles');
-        this.articles = response.data.map(article => ({
-          ...article,
-          // Ajouter l'URL de l'image si elle est disponible
-          image_url: article.image ? `http://localhost:4000/${article.image}` : null
-        }));
+        this.articles = response.data;
       } catch (error) {
         console.error('Erreur lors de la récupération des articles:', error);
       }
@@ -77,7 +72,6 @@ export default {
   }
 };
 </script>
-
 
 <style>
 .article {
