@@ -29,7 +29,6 @@
             <p>Nos réalisations sont faites à partir de ce drone :</p>
             
         </div>
-        <Drones />
         <div id="realisations">
             <h2><span>N</span>os réalisations</h2>
         </div>
