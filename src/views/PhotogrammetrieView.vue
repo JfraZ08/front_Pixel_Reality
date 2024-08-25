@@ -34,16 +34,6 @@
         </div>
     </section>
 </template>
-
-<script>
-import Drones from "@/components/Drones.vue";
-
-export default {
-  components: {
-    Drones
-  }
-};
-</script>
 <style>
 .fond_photogrammetrie {
     background-image: url(../../public/images/3D.jpeg);

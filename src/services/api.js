@@ -1,10 +1,12 @@
 //  src/services/api.js
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEV
+console.log(import.meta.env.VITE_BACKEND_URL_DEV); // Doit afficher 'http://localhost:4000/'
+
 
 const apiClient = {
   async request(endpoint, options = {}) {
-    const response = await fetch(`${BACKEND_URL}/api${endpoint}`, {
+    const response = await fetch(`${BACKEND_URL}api/${endpoint}`, {
       headers: {
         'Content-Type': 'application/json',
         ...options.headers
@@ -17,40 +19,40 @@ const apiClient = {
       throw new Error(message);
     }
 
-    return response.json(message)
+    return response.json()
   },
 
   // Gestion des articles
   getArticles() {
-    return this.request('/articles');
+    return this.request('articles');
   },
   getArticle(id) {
-    return this.request(`/articles/${id}`);
+    return this.request(`articles/${id}`);
   },
   createArticle(data) {
-    return this.request('/articles', {
+    return this.request('articles', {
       method: 'POST',
       body: JSON.stringify(data)
     });
   },
   updateArticle(id, data) {
-    return this.request(`/articles/${id}`, {
+    return this.request(`articles/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data)
     });
   },
   deleteArticle(id) {
-    return this.request(`/articles/${id}`, {
+    return this.request(`articles/${id}`, {
       method: 'DELETE'
     });
   },
 
   // Gestion des catégories
   getCategories() {
-    return this.request('/categories');
+    return this.request('categories');
   },
   createCategory(data) {
-    return this.request('/categories', {
+    return this.request('categories', {
       method: 'POST',
       body: JSON.stringify(data)
     });
@@ -58,10 +60,10 @@ const apiClient = {
 
   // Gestion des tags
   getTags() {
-    return this.request('/tags');
+    return this.request('tags');
   },
   createTag(data) {
-    return this.request('/tags', {
+    return this.request('tags', {
       method: 'POST',
       body: JSON.stringify(data)
     });

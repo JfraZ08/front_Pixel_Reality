@@ -6,7 +6,6 @@ import ImagerieIaView from '../views/ImagerieIaView.vue'
 import PhorogrammetrieView from '../views/PhotogrammetrieView.vue'
 import QRCodeView from '../views/QRCodeView.vue'
 import ContactView from '../views/ContactView.vue'
-import Drones from '@/components/Drones.vue'
 import AdminDrone from '@/admin/views/AdminDrone.vue'
 import UserConnexionView from '@/admin/views/UserConnexionView.vue'
 
@@ -47,11 +46,6 @@ const router = createRouter({
       path: '/contact',
       name: 'contact',
       component: ContactView
-    },
-    {
-      path: '/drone',
-      name: 'drone',
-      component: Drones
     },
     {
       path: '/connexion',

@@ -1,224 +1,323 @@
-<style>
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 20px 0;
-    font-family: Arial, sans-serif;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-}
-
-th, td {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
-}
-
-th {
-    background-color: #f2f2f2;
-    color: #333;
-    font-weight: bold;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-.maj {
-    background-color: #4CAF50;
-    color: white;
-    width: 80px;
-    height: 30px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 5px;
-}
-
-.maj:hover {
-    background-color: #45a049;
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-
-.delete {
-    background-color: #f44336;
-    color: white;
-    width: 80px;
-    height: 30px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 5px;
-}
-
-.delete:hover {
-    background-color: #e31b0c;
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-
-.ajout_title, .list_title {
-    text-align: center;
-}
-.table_edit, .table_delete, .table_name, .table_name_sous, .table_description, .table_description_sous {
-    width: 150px;
-    max-width: 150px;
-    word-wrap: break-word;
-}
-
-.form {
-    width: 60px;
-    height: 30px;
-    background-color: #4CAF50;
-    border: none;
-}
-</style>
-
-
 <template>
-<deconnexion-view/>
-    <div>
-        <h2 class="ajout_title">Ajout d'un nouveau drone</h2>
-        <form @submit.prevent="addOrUpdateDrone">
-            <div>
-                <label for="nom">Nom:</label>
-                <input class="input-nom" type="text" id="nom" v-model="nom" required /> 
-            </div>
-            <div>
-                <label for="description">Description:</label>
-                <textarea id="description" v-model="description" required></textarea>
-            </div>
-            <button class="form" type="submit">{{ isEdit ? 'Mettre à jour' : 'Ajouter' }}</button>
+    <div class="admin-drone">
+      <h1>Gestion des Articles, Tags et Catégories</h1>
+      
+      <!-- Tableau pour les Articles -->
+      <section>
+        <h2>Articles</h2>
+        <form @submit.prevent="handleArticleSubmit">
+          <input type="text" v-model="articleForm.title" placeholder="Titre de l'article" required />
+          <textarea v-model="articleForm.content" placeholder="Contenu de l'article" required></textarea>
+          <select v-model="articleForm.category">
+            <option v-for="category in categories" :key="category.id" :value="category.id">
+              {{ category.name }}
+            </option>
+          </select>
+          <button type="submit">{{ editingArticle ? 'Modifier' : 'Ajouter' }} l'article</button>
         </form>
-        <p v-if="message">{{ message }}</p>
-
-        <h2 class="list_title">Listes des drones</h2>
+        
+        <!-- Tableau pour lister les articles -->
         <table>
-            <thead>
-                <tr>
-                    <th class="table_name">Nom</th>
-                    <th class="table_description">Description</th>
-                    <th class="table_edit">Modifier</th>
-                    <th class="table_delete">Supprimer</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="drone in drones" :key="drone.id_drone">
-                    <td class="table_name_sous">{{ drone.nom }}</td>
-                    <td class="table_description_sous">{{ drone.description }}</td>
-                    <td class="table_edit_sous">
-                        <button class="maj" @click="editDrone(drone)">Modifier</button>
-                    </td>
-                    <td class="table_delete_sous">    
-                        <button class="delete" @click="deleteDrone(drone.id_drone)">Supprimer</button>
-                    </td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>Titre</th>
+              <th>Contenu</th>
+              <th>Catégorie</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="article in articles" :key="article.id">
+              <td>{{ article.title }}</td>
+              <td>{{ article.content }}</td>
+              <td>{{ getCategoryName(article.category) }}</td>
+              <td>
+                <button @click="editArticle(article)">Éditer</button>
+                <button @click="deleteArticle(article.id)">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
         </table>
-        <p v-if="message">{{ message }}</p>
+      </section>
+  
+      <!-- Tableau pour les Tags -->
+      <section>
+        <h2>Tags</h2>
+        <form @submit.prevent="handleTagSubmit">
+          <input type="text" v-model="tagForm.name" placeholder="Nom du tag" required />
+          <button type="submit">{{ editingTag ? 'Modifier' : 'Ajouter' }} le tag</button>
+        </form>
+        
+        <!-- Tableau pour lister les tags -->
+        <table>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="tag in tags" :key="tag.id">
+              <td>{{ tag.name }}</td>
+              <td>
+                <button @click="editTag(tag)">Éditer</button>
+                <button @click="deleteTag(tag.id)">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+  
+      <!-- Tableau pour les Catégories -->
+      <section>
+        <h2>Catégories</h2>
+        <form @submit.prevent="handleCategorySubmit">
+          <input type="text" v-model="categoryForm.name" placeholder="Nom de la catégorie" required />
+          <button type="submit">{{ editingCategory ? 'Modifier' : 'Ajouter' }} la catégorie</button>
+        </form>
+        
+        <!-- Tableau pour lister les catégories -->
+        <table>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="category in categories" :key="category.id">
+              <td>{{ category.name }}</td>
+              <td>
+                <button @click="editCategory(category)">Éditer</button>
+                <button @click="deleteCategory(category.id)">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
     </div>
-    <div>
-        <Articleform/>
-    </div>
-</template>
-
-<script>
-import axios from "axios";
-import deconnexionView from '@/components/deconnexion/deconnexionView.vue';
-import Articleform from "@/components/articles/Articleform.vue";
-
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEV; 
-
-export default {
-  components: { deconnexionView, Articleform },
-    data(){
-        return {
-            drones: [],
-            nom: '',
-            description: '',
-            message: '',
-            isEdit: false,
-            editId: null
-        };
+  </template>
+  
+  
+  <script>
+  import apiClient from '@/services/api'; // Assurez-vous que ce chemin est correct
+  
+  export default {
+    data() {
+      return {
+        articles: [],
+        tags: [],
+        categories: [],
+        articleForm: {
+          id: null,
+          title: '',
+          content: '',
+          category: ''
+        },
+        tagForm: {
+          id: null,
+          name: ''
+        },
+        categoryForm: {
+          id: null,
+          name: ''
+        },
+        editingArticle: false,
+        editingTag: false,
+        editingCategory: false
+      };
+    },
+    created() {
+      this.fetchArticles();
+      this.fetchTags();
+      this.fetchCategories();
     },
     methods: {
-        async fetchDrones() {
-            try {
-                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL_DEV}/api/drones`);
-                this.drones = response.data;
-            } catch (error) {
-                console.log('Error lors de la récupération des drones:', error);
-            }
-        },
-        async addOrUpdateDrone() {
-            if (this.isEdit) {
-                // Mise à jour du drone        }
-                try {
-                    const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL_DEV}/api/drones/${this.editId}`, {
-                        nom: this.nom,
-                        description: this.description
-                    });
-                    if(response.status === 200) {
-                        this.message = 'Drone mis à jour avec succès';
-                        this.nom = '';
-                        this.description = '';
-                        this.isEdit = false;
-                        this.editId = null;
-                        this.fetchDrones();
-                    } else {
-                        this.message = 'Erreur lors de la mise à jour du drone';
-                    }
-                    console.log(response)
-                } catch (error) {
-                    console.log('Erreur : ', error);
-                    this.message = 'Erreur lors de la mise à jour du drone';
-                }
-            } else {
-                // Ajout d'un nouveau drone
-                try {
-                    const response = await axios.post(`${BACKEND_URL}/api/drones`, {
-                        nom: this.nom,
-                        description: this.description
-                    });
-                    if(response.status === 201) {
-                        this.message = `Drone ajouté avec succès. ID: ${response.data.id_drone}`;
-                        this.nom = '';
-                        this.description = '';
-                        this.fetchDrones(); // Mettre à jour la liste des drones après ajout
-                    } else {
-                        this.message = 'Erreur lors de l\'ajout du drone';
-                    }
-                } catch (error) {
-                    console.log('Erreur : ', error);
-                    this.message = 'Erreur lors de l\'ajout du drone';
-                }
-            }
-        },
-        async deleteDrone(id_drone){
-            try {
-                const response = await axios.delete(`${BACKEND_URL}/api/drones/${id_drone}`);
-                if(response.status === 200) {
-                    this.message = 'Drone supprimé avec succès';
-                    this.fetchDrones(); // Mettre à jour la liste des drones après suppression;
-                } else {
-                    this.message = 'Erreur lors de la suppression';
-                }
-            } catch (error) {
-                console.error('Erreur lors de la suppression du drone: ', error);
-                this.message = 'Erreur lors de la suppression du drone';
-            }
-        },
-        editDrone(drone) {
-            this.nom = drone.nom;
-            this.description = drone.description;
-            this.isEdit = true;
-            this.editId = drone.id_drone;
+      async fetchArticles() {
+        try {
+          const response = await apiClient.getArticles();
+          this.articles = response;
+        } catch (error) {
+          console.error("Erreur lors de la récupération des articles :", error);
         }
-    },
-    mounted() {
-        this.fetchDrones(); // Charger la liste des drones lors du montage du composant
+      },
+      async fetchTags() {
+        try {
+          const response = await apiClient.getTags();
+          this.tags = response;
+        } catch (error) {
+          console.error("Erreur lors de la récupération des tags :", error);
+        }
+      },
+      async fetchCategories() {
+        try {
+          const response = await apiClient.getCategories();
+          this.categories = response;
+        } catch (error) {
+          console.error("Erreur lors de la récupération des catégories :", error);
+        }
+      },
+      getCategoryName(categoryId) {
+        const category = this.categories.find(cat => cat.id === categoryId);
+        return category ? category.name : 'Non défini';
+      },
+      handleArticleSubmit() {
+        if (this.editingArticle) {
+          this.updateArticle();
+        } else {
+          this.createArticle();
+        }
+      },
+      async createArticle() {
+        try {
+          await apiClient.createArticle(this.articleForm);
+          this.fetchArticles();
+          this.resetArticleForm();
+        } catch (error) {
+          console.error("Erreur lors de la création de l'article :", error);
+        }
+      },
+      async updateArticle() {
+        try {
+          await apiClient.updateArticle(this.articleForm.id, this.articleForm);
+          this.fetchArticles();
+          this.resetArticleForm();
+        } catch (error) {
+          console.error("Erreur lors de la mise à jour de l'article :", error);
+        }
+      },
+      editArticle(article) {
+        this.articleForm = { ...article };
+        this.editingArticle = true;
+      },
+      async deleteArticle(id) {
+        try {
+          await apiClient.deleteArticle(id);
+          this.fetchArticles();
+        } catch (error) {
+          console.error("Erreur lors de la suppression de l'article :", error);
+        }
+      },
+      resetArticleForm() {
+        this.articleForm = { id: null, title: '', content: '', category: '' };
+        this.editingArticle = false;
+      },
+      handleTagSubmit() {
+        if (this.editingTag) {
+          this.updateTag();
+        } else {
+          this.createTag();
+        }
+      },
+      async createTag() {
+        try {
+          await apiClient.createTag(this.tagForm);
+          this.fetchTags();
+          this.resetTagForm();
+        } catch (error) {
+          console.error("Erreur lors de la création du tag :", error);
+        }
+      },
+      async updateTag() {
+        try {
+          await apiClient.updateTag(this.tagForm.id, this.tagForm);
+          this.fetchTags();
+          this.resetTagForm();
+        } catch (error) {
+          console.error("Erreur lors de la mise à jour du tag :", error);
+        }
+      },
+      editTag(tag) {
+        this.tagForm = { ...tag };
+        this.editingTag = true;
+      },
+      async deleteTag(id) {
+        try {
+          await apiClient.deleteTag(id);
+          this.fetchTags();
+        } catch (error) {
+          console.error("Erreur lors de la suppression du tag :", error);
+        }
+      },
+      resetTagForm() {
+        this.tagForm = { id: null, name: '' };
+        this.editingTag = false;
+      },
+      handleCategorySubmit() {
+        if (this.editingCategory) {
+          this.updateCategory();
+        } else {
+          this.createCategory();
+        }
+      },
+      async createCategory() {
+        try {
+          await apiClient.createCategory(this.categoryForm);
+          this.fetchCategories();
+          this.resetCategoryForm();
+        } catch (error) {
+          console.error("Erreur lors de la création de la catégorie :", error);
+        }
+      },
+      async updateCategory() {
+        try {
+          await apiClient.updateCategory(this.categoryForm.id, this.categoryForm);
+          this.fetchCategories();
+          this.resetCategoryForm();
+        } catch (error) {
+          console.error("Erreur lors de la mise à jour de la catégorie :", error);
+        }
+      },
+      editCategory(category) {
+        this.categoryForm = { ...category };
+        this.editingCategory = true;
+      },
+      async deleteCategory(id) {
+        try {
+          await apiClient.deleteCategory(id);
+          this.fetchCategories();
+        } catch (error) {
+          console.error("Erreur lors de la suppression de la catégorie :", error);
+        }
+      },
+      resetCategoryForm() {
+        this.categoryForm = { id: null, name: '' };
+        this.editingCategory = false;
+      }
     }
-}
-</script>
+  };
+  </script>
+  
+  
+  <style scoped>
+  .admin-drone {
+    padding: 20px;
+  }
+  section {
+    margin-bottom: 40px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  input, textarea, select {
+    margin-bottom: 10px;
+  }
+  button {
+    margin-top: 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f4f4f4;
+  }
+  </style>
+  
