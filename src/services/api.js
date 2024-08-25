@@ -1,10 +1,12 @@
-const { request } = require("http");
+//  src/services/api.js
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEV
 
 const apiClient = {
   async request(endpoint, options = {}) {
-    const response = await fetch(`http://localhost:4000/api${endpoint}`, {
+    const response = await fetch(`${BACKEND_URL}/api${endpoint}`, {
       headers: {
-        'Content-Type': 'aapplication/json',
+        'Content-Type': 'application/json',
         ...options.headers
       },
       ...options
