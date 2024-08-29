@@ -1,12 +1,11 @@
-//  src/services/api.js
+// src/services/api.js
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEV
-console.log(import.meta.env.VITE_BACKEND_URL_DEV); // Doit afficher 'http://localhost:4000/'
-
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEV;
 
 const apiClient = {
   async request(endpoint, options = {}) {
-    const response = await fetch(`${BACKEND_URL}api/${endpoint}`, {
+    const url = `${BACKEND_URL}api/${endpoint}`;
+    const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
         ...options.headers
@@ -19,7 +18,7 @@ const apiClient = {
       throw new Error(message);
     }
 
-    return response.json()
+    return response.json();
   },
 
   // Gestion des articles
@@ -32,40 +31,68 @@ const apiClient = {
   createArticle(data) {
     return this.request('articles', {
       method: 'POST',
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
   },
   updateArticle(id, data) {
     return this.request(`articles/${id}`, {
       method: 'PUT',
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
   },
   deleteArticle(id) {
     return this.request(`articles/${id}`, {
-      method: 'DELETE'
-    });
-  },
-
-  // Gestion des catégories
-  getCategories() {
-    return this.request('categories');
-  },
-  createCategory(data) {
-    return this.request('categories', {
-      method: 'POST',
-      body: JSON.stringify(data)
+      method: 'DELETE',
     });
   },
 
   // Gestion des tags
   getTags() {
-    return this.request('tags');
+    return this.request('tag');
+  },
+  getTag(id) {
+    return this.request(`tag/${id}`);
   },
   createTag(data) {
-    return this.request('tags', {
+    return this.request('tag', {
       method: 'POST',
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
+    });
+  },
+  updateTag(id, data) {
+    return this.request(`tag/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  },
+  deleteTag(id) {
+    return this.request(`tag/${id}`, {
+      method: 'DELETE',
+    });
+  },
+
+  // Gestion des catégories
+  getCategories() {
+    return this.request('category');
+  },
+  getCategory(id) {
+    return this.request(`category/${id}`);
+  },
+  createCategory(data) {
+    return this.request('category', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+  updateCategory(id, data) {
+    return this.request(`category/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  },
+  deleteCategory(id) {
+    return this.request(`category/${id}`, {
+      method: 'DELETE',
     });
   },
 };
