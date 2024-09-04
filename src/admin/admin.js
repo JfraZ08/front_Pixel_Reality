@@ -1,3 +1,4 @@
+// /src/admin/admin.js
 import apiClient from '@/services/api'; // Assurez-vous que ce chemin est correct
   
 export default {
@@ -89,13 +90,18 @@ export default {
       this.editingArticle = true;
     },
     async deleteArticle(id) {
+      if (!id || typeof id !== 'string' || id.length !== 24) {
+        console.error('ID invalide fourni pour la suppression de l\'article:', id);
+        return;
+      }
+    
       try {
         await apiClient.deleteArticle(id);
         this.fetchArticles();
       } catch (error) {
         console.error("Erreur lors de la suppression de l'article :", error);
       }
-    },
+    },    
     resetArticleForm() {
       this.articleForm = { id: null, title: '', content: '', category: '' };
       this.editingArticle = false;

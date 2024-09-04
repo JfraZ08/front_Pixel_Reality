@@ -1,3 +1,4 @@
+<!-- /src/admin/views/AdminDrone.vue-->
 <template>
     <div class="admin-drone">
       <h1>Gestion des Articles, Tags et Catégories</h1>

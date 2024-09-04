@@ -1,6 +1,6 @@
 // src/services/api.js
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEV;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_PROD;
 
 const apiClient = {
   async request(endpoint, options = {}) {
@@ -12,6 +12,9 @@ const apiClient = {
       },
       ...options
     });
+    
+
+
 
     if (!response.ok) {
       const message = `Error: ${response.statusText}`;
