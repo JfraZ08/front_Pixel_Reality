@@ -34,7 +34,7 @@
               <td>{{ getCategoryName(article.category) }}</td>
               <td>
                 <button @click="editArticle(article)">Éditer</button>
-                <button @click="deleteArticle(article.id)">Supprimer</button>
+                <button @click="deleteArticle(article._id)">Supprimer</button>
               </td>
             </tr>
           </tbody>
@@ -62,7 +62,7 @@
               <td>{{ tag.name }}</td>
               <td>
                 <button @click="editTag(tag)">Éditer</button>
-                <button @click="deleteTag(tag.id)">Supprimer</button>
+                <button @click="deleteTag(tag._id)">Supprimer</button>
               </td>
             </tr>
           </tbody>
@@ -90,7 +90,7 @@
               <td>{{ category.name }}</td>
               <td>
                 <button @click="editCategory(category)">Éditer</button>
-                <button @click="deleteCategory(category.id)">Supprimer</button>
+                <button @click="deleteCategory(category._id)">Supprimer</button>
               </td>
             </tr>
           </tbody>

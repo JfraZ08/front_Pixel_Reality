@@ -35,11 +35,13 @@ export default {
     async fetchArticles() {
       try {
         const response = await apiClient.getArticles();
+        console.log('Articles récupérés :', response); // Vérifie les articles ici
         this.articles = response;
       } catch (error) {
         console.error("Erreur lors de la récupération des articles :", error);
       }
     },
+    
     async fetchTags() {
       try {
         const response = await apiClient.getTags();
@@ -57,6 +59,7 @@ export default {
       }
     },
     getCategoryName(categoryId) {
+      console.log('ID catégorie pour article :', categoryId)
       const category = this.categories.find(cat => cat.id === categoryId);
       return category ? category.name : 'Non défini';
     },
@@ -78,7 +81,7 @@ export default {
     },
     async updateArticle() {
       try {
-        await apiClient.updateArticle(this.articleForm.id, this.articleForm);
+        await apiClient.updateArticle(this.articleForm._id, this.articleForm);
         this.fetchArticles();
         this.resetArticleForm();
       } catch (error) {
@@ -86,17 +89,18 @@ export default {
       }
     },
     editArticle(article) {
+      console.log('ID article à modifier :', article._id)
       this.articleForm = { ...article };
       this.editingArticle = true;
     },
-    async deleteArticle(id) {
-      if (!id || typeof id !== 'string' || id.length !== 24) {
-        console.error('ID invalide fourni pour la suppression de l\'article:', id);
+    async deleteArticle(_id) {  
+      console.log('ID article à supprimer : ', _id)
+      if (!_id) {
+        console.log('ID manquant pour la suppression')
         return;
-      }
-    
+      } 
       try {
-        await apiClient.deleteArticle(id);
+        await apiClient.deleteArticle(_id);
         this.fetchArticles();
       } catch (error) {
         console.error("Erreur lors de la suppression de l'article :", error);
@@ -124,7 +128,7 @@ export default {
     },
     async updateTag() {
       try {
-        await apiClient.updateTag(this.tagForm.id, this.tagForm);
+        await apiClient.updateTag(this.tagForm._id, this.tagForm);
         this.fetchTags();
         this.resetTagForm();
       } catch (error) {
@@ -135,9 +139,9 @@ export default {
       this.tagForm = { ...tag };
       this.editingTag = true;
     },
-    async deleteTag(id) {
+    async deleteTag(_id) {
       try {
-        await apiClient.deleteTag(id);
+        await apiClient.deleteTag(_id);
         this.fetchTags();
       } catch (error) {
         console.error("Erreur lors de la suppression du tag :", error);
@@ -165,7 +169,7 @@ export default {
     },
     async updateCategory() {
       try {
-        await apiClient.updateCategory(this.categoryForm.id, this.categoryForm);
+        await apiClient.updateCategory(this.categoryForm._id, this.categoryForm);
         this.fetchCategories();
         this.resetCategoryForm();
       } catch (error) {
@@ -176,9 +180,9 @@ export default {
       this.categoryForm = { ...category };
       this.editingCategory = true;
     },
-    async deleteCategory(id) {
+    async deleteCategory(_id) {
       try {
-        await apiClient.deleteCategory(id);
+        await apiClient.deleteCategory(_id);
         this.fetchCategories();
       } catch (error) {
         console.error("Erreur lors de la suppression de la catégorie :", error);

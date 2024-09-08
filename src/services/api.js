@@ -1,6 +1,6 @@
 // src/services/api.js
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_PROD;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEV;
 
 const apiClient = {
   async request(endpoint, options = {}) {
@@ -12,13 +12,16 @@ const apiClient = {
       },
       ...options
     });
-    
-
-
 
     if (!response.ok) {
-      const message = `Error: ${response.statusText}`;
+      const errorText = await response.text();
+      const message = `Error: ${response.statusText}. Details: ${errorText}`;
       throw new Error(message);
+    }
+
+    // Si la réponse est vide, vous pouvez gérer cela comme une réponse valide (par exemple pour DELETE)
+    if (response.status === 204) {
+      return; // Aucun JSON à retourner
     }
 
     return response.json();

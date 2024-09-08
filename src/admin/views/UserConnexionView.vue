@@ -12,4 +12,3 @@
     ...UserConnexion
   }
   </script>
-  
