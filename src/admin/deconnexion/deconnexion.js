@@ -1,11 +1,4 @@
-<template>
-    <div>
-      <button @click="logout">Logout</button>
-    </div>
-  </template>
-  
-  <script>
-  export default {
+export default {
     methods: {
       logout() {
         // Supprimer le token du localStorage
@@ -16,5 +9,3 @@
       }
     }
   };
-  </script>
-  

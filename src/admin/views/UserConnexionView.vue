@@ -1,14 +1,19 @@
 <template>
-    <div>
-      <input v-model="username" placeholder="Username" />
-      <input v-model="password" type="password" placeholder="Password" />
-      <button @click="login">Login</button>
+  <div class="login-container">
+    <div class="login-form">
+      <input v-model="username" placeholder="Username" class="input-field" />
+      <input v-model="password" type="password" placeholder="Password" class="input-field" />
+      <button @click="login" class="login-button">Login</button>
     </div>
-  </template>
-  
-  <script>  
-  import UserConnexion from '@/admin/UserConnexion';
-  export default {
-    ...UserConnexion
-  }
-  </script>
+  </div>
+</template>
+
+<script>
+import UserConnexion from '@/admin/connexion/UserConnexion';
+import '@/assets/styles/connexion.css'
+export default {
+  ...UserConnexion
+}
+</script>
+
+
